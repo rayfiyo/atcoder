@@ -1,0 +1,13 @@
+#!/bin/sh
+
+echo "you have to run \"fish ./1next.sh\""
+set folderName "tempf"
+set question "tempq"
+set folderName (ls |grep -v .sh | grep -v .md | grep -v myAtCoder | grep -v archives | grep -v go.mod | grep -v main.go )
+echo "問題名やアルファベットを入力:"
+read question
+
+mkdir ./$folderName/$question
+mv ./main.go ./$folderName/$question/main.go
+rm ./myAtCoder
+cp ./archives/baseCode.go ./main.go
