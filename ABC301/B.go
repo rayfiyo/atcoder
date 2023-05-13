@@ -4,6 +4,8 @@ import (
 	"bufio"
 	"fmt"
 	"os"
+	"strings"
+	"strconv"
 )
 
 // 対話形式の問い は TLEなる！
@@ -14,13 +16,16 @@ func main() {
 	defer out.Flush()
 
 	var N int
-	var S, format string
+	var A [100]int
+	var input, s string
 
 	fmt.Fscan(in, &N)
+	liner.Split(bufio.ScanWords)
+	liner.Scan()
+	input = liner.Text()
+	A[0], _ = strconv.Atoi(strings.Split(input, " "))
 
-	liner.Scan()		// "1 2 3" などの入力を一行スキャン
-	S = liner.Text()
-
-	fmt.Fprintln(out, N, format)
-	fmt.Fprintln(out, S, format)
+	for i:=0; i<N; i++{
+		fmt.Fprintln(out, A[i], s)
+	}
 }
