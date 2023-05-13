@@ -3,14 +3,16 @@ package main
 import "fmt"
 
 func main() {
-	var N, X int32
+	var N, X int
 	fmt.Scanf("%d %d", &N, &X)
-	char := [...]string{"A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"}
 
-	if N < X {
-		ans := (X / N) - 1
-		fmt.Printf("%s\n", char[ans])
+	if N >= X {
+		fmt.Println(string(rune(65))) // 65 == 'A'
 	} else {
-		fmt.Printf("A\n")
+		if X%N == 0 {
+			fmt.Println(string(rune((X / N) + (64))))
+		} else {
+			fmt.Println(string(rune((X / N) + (65))))
+		}
 	}
 }
