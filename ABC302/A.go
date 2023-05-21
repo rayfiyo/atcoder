@@ -1,3 +1,4 @@
+/*
 package main
 
 import (
@@ -8,16 +9,14 @@ import (
 	"strings"
 )
 
-// 入力最大値: 65536
+// Max. input value: 65536
 var sc = bufio.NewScanner(os.Stdin)
 
-// バッファでstrings型として行読み取り
 func stringLine() string {
 	sc.Scan()
 	return sc.Text()
 }
 
-// バッファでint型として行読み取り
 func intSC() int {
 	sc.Scan()
 	inputInt, err := strconv.Atoi(sc.Text())
@@ -27,7 +26,7 @@ func intSC() int {
 	return inputInt
 }
 
-// 空白区切り スライス
+// Space-delimited slices
 func intLine() []int {
 	slice := []int{}
 
@@ -48,32 +47,19 @@ func intLine() []int {
 func main() {
 	// want to delimited-space: sc.Split(bufio.ScanWords)
 
-	N := intLine()
-	fmt.Println(N[0])
-}
+	A, B := 1, 1
+	fmt.Scanf("%d %d\n", &A, &B)
 
-/* 検討要素1
-	in := bufio.NewReader(os.Stdin)
-	out := bufio.NewWriter(os.Stdout)
-	defer out.Flush()
-	var N int
-	var format string
-	fmt.Fscan(in, &N)
-	fmt.Fprintln(out, N, format)
-*/
-
-/* 未検証1
-func printInts(s []int) {
-	p := []string{}
-	for _, v := range s {
-		p = append(p, strconv.Itoa(v))
+	if B == 1 {
+		fmt.Println(A)
+	} else if A <= B {
+		fmt.Println("1")
+	} else if A%B == 0 {
+		fmt.Println(A / B)
+	} else if A%B != 0 {
+		fmt.Println((A / B) + 1)
+	} else {
+		fmt.Println("omg")
 	}
-	fmt.Println(strings.Join(p, " "))
-}
-*/
-
-/* 未検証2
-func printStrings(s []string) {
-	fmt.Println(strings.Join(s, " "))
 }
 */

@@ -27,6 +27,19 @@ func intSC() int {
 	return inputInt
 }
 
+func oneChar() []string {
+	slice := []string{}
+
+	sc.Scan()
+	text := sc.Text
+
+	for i, oneC := range text {
+		slice[i] = oneC
+	}
+
+	return slice
+}
+
 // 空白区切り スライス
 func intLine() []int {
 	slice := []int{}
@@ -48,18 +61,21 @@ func intLine() []int {
 func main() {
 	// want to delimited-space: sc.Split(bufio.ScanWords)
 
-	N := intLine()
-	fmt.Println(N[0])
+	H, W := 5, 5
+	fmt.Scanf("%d %d\n", &H, &W)
+	for i := 0; i < H; i++ {
+		S[i] := stringLine()
+	}
 }
 
 /* 検討要素1
-	in := bufio.NewReader(os.Stdin)
-	out := bufio.NewWriter(os.Stdout)
-	defer out.Flush()
-	var N int
-	var format string
-	fmt.Fscan(in, &N)
-	fmt.Fprintln(out, N, format)
+in := bufio.NewReader(os.Stdin)
+out := bufio.NewWriter(os.Stdout)
+defer out.Flush()
+var N int
+var format string
+fmt.Fscan(in, &N)
+fmt.Fprintln(out, N, format)
 */
 
 /* 未検証1
