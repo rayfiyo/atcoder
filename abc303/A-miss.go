@@ -1,3 +1,4 @@
+/*
 package main
 
 import (
@@ -11,13 +12,13 @@ import (
 // 入力最大値: 65536
 var sc = bufio.NewScanner(os.Stdin)
 
-// strings型スライス 行ごと
+// バッファでstrings型として行読み取り
 func stringLine() string {
 	sc.Scan()
 	return sc.Text()
 }
 
-// int型スライス？ 行ごと
+// バッファでint型として行読み取り
 func intSC() int {
 	sc.Scan()
 	inputInt, err := strconv.Atoi(sc.Text())
@@ -27,12 +28,12 @@ func intSC() int {
 	return inputInt
 }
 
-// int型スライス 区切り指定
+// 区切り スライス
 func intLine() []int {
 	slice := []int{}
 
 	sc.Scan()
-	text := strings.Split(sc.Text(), " ")	// 空白区切り
+	text := strings.Split(sc.Text(), " ") // 空白区切り
 	// (sc.Text(), "ここが区切り文字だよ～")
 
 	for _, t := range text {
@@ -49,6 +50,27 @@ func intLine() []int {
 func main() {
 	// 空白区切りならこれつける: sc.Split(bufio.ScanWords)
 
-	N := intLine()
-	fmt.Println(N[0])
+	N := 100
+	fmt.Scanf("%d\n", &N)
+	S := stringLine()
+	T := stringLine()
+
+	for i := 0; i < N; i++ {
+		if S[i] != T[i] {
+			if string(S[i]) != "1" && string(T[i]) != "l" {
+				if string(T[i]) != "1" && string(S[i]) != "l" {
+					if string(S[i]) != "0" && string(T[i]) != "o" {
+						if string(T[i]) != "0" && string(S[i]) != "o" {
+							fmt.Println("No")
+							break
+						}
+					}
+				}
+			}
+		}
+		if i >= N-1 {
+			fmt.Println("Yes")
+		}
+	}
 }
+*/
