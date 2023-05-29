@@ -9,16 +9,15 @@ import (
 )
 
 // 入力最大値: 65536
-var sc = bufio.NewScanner(os.Stdin) // 高級、行区切り、トークン分割可能
-//var sr= bufio.NewReader(os.Stdin)	// 低レイヤ、区切り指定、バイナリ入力可能
+var sc = bufio.NewScanner(os.Stdin)
 
-// strings型(スライス) 1行入力
+// strings型スライス 行ごと
 func stringLine() string {
 	sc.Scan()
 	return sc.Text()
 }
 
-// int型スライス？ 1行入力
+// int型スライス？ 行ごと
 func intSC() int {
 	sc.Scan()
 	inputInt, err := strconv.Atoi(sc.Text())
@@ -28,12 +27,12 @@ func intSC() int {
 	return inputInt
 }
 
-// int型スライス 1行入力 指定区切り
+// int型スライス 区切り指定
 func intLine() []int {
 	slice := []int{}
 
 	sc.Scan()
-	text := strings.Split(sc.Text(), " ") // 空白区切り
+	text := strings.Split(sc.Text(), "\n") // 空白区切り
 	// (sc.Text(), "ここが区切り文字だよ～")
 
 	for _, t := range text {
@@ -50,6 +49,12 @@ func intLine() []int {
 func main() {
 	// 空白区切りならこれつける: sc.Split(bufio.ScanWords)
 
-	N := intLine()
-	fmt.Println(N[0])
+	N, K, Q := 10000, 1000000000, 100000
+	A := make([]int, Q)
+
+	fmt.Scanf("%d %d %d\n", &N, &K, &Q)
+	for i := 0; i < Q; i++ {
+		fmt.Scan(&A[i])
+	}
+	fmt.Println(A[0])
 }
