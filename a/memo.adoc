@@ -1,0 +1,5 @@
+= シェルで、0～100試す
+for i in (seq 0 100)
+	echo -n "$i: "
+	echo "$i" | go run A.go
+end
