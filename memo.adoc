@@ -3,3 +3,26 @@ for i in (seq 0 100)
 	echo -n "$i: "
 	echo "$i" | go run A.go
 end
+
+= 検討要素1
+in := bufio.NewReader(os.Stdin)
+out := bufio.NewWriter(os.Stdout)
+defer out.Flush()
+var N int
+var format string
+fmt.Fscan(in, &N)
+fmt.Fprintln(out, N, format)
+
+= 未検証1
+func printInts(s []int) {
+	p := []string{}
+	for _, v := range s {
+		p = append(p, strconv.Itoa(v))
+	}
+	fmt.Println(strings.Join(p, " "))
+}
+
+= 未検証2
+func printStrings(s []string) {
+	fmt.Println(strings.Join(s, " "))
+}
