@@ -1,3 +1,4 @@
+/*
 package main
 
 import (
@@ -12,7 +13,7 @@ import (
 func memo() {
 	number := 123.4
 	// 四捨五入
-	fmt.Println(math.Round(number))
+    fmt.Println(math.Round(number))
 	// 切り上げ
 	fmt.Println(math.Ceil(number))
 	// 切り捨て
@@ -24,9 +25,14 @@ var sc = bufio.NewScanner(os.Stdin) // 高級、行区切り、トークン分�
 //var sr= bufio.NewReader(os.Stdin)	// 低レイヤ、区切り指定、バイナリ入力可能
 
 // strings型(スライス？) 1行入力
-func stringLine() string {
+func stringLine() []string {
+	slice := []string{}
 	sc.Scan()
-	return sc.Text()
+	text := strings.SplitN(sc.Text(), "", len(sc.Text()))
+	for _, t := range text {
+		slice = append(slice, t)
+	}
+	return slice
 }
 
 // int型 1行入力
@@ -52,20 +58,31 @@ func intSplit() []int {
 	//text := strings.SplitN(sc.Text(), "", len(sc.Text()))
 
 	for _, t := range text {
-		inted, err := strconv.Atoi(t)
+		converted, err := strconv.Atoi(t)
 		if err != nil {
 			panic(err)
 		}
-		slice = append(slice, inted)
+		slice = append(slice, converted)
 	}
 	return slice
 }
 
 // 対話形式の問い は TLEなる！
 func main() {
-	var N int
-	fmt.Scanln("%d\n", &N)
+	// 空白区切りならこれつける: sc.Split(bufio.ScanWords)
 
-	//N := intSplit()
-	//fmt.Println(N[0])
+	N := 50
+	fmt.Scanf("%d\n", &N)
+	S := stringLine()
+	var ans[100] string
+	for i, j:=0, 0; i<N; i++ {
+		ans[j] = S[i]
+		j++
+		ans[j] = S[i]
+		j++
+	}
+	for _, in := range ans {
+		fmt.Printf("%s", in)
+	}
 }
+*/

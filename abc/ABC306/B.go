@@ -1,3 +1,4 @@
+/*
 package main
 
 import (
@@ -51,21 +52,23 @@ func intSplit() []int {
 	// 1文字ずつで区切る
 	//text := strings.SplitN(sc.Text(), "", len(sc.Text()))
 
-	for _, t := range text {
-		inted, err := strconv.Atoi(t)
-		if err != nil {
-			panic(err)
+	for i, t := range text {
+		if t == "1" {
+			slice = append(slice, i)
 		}
-		slice = append(slice, inted)
 	}
 	return slice
 }
 
 // 対話形式の問い は TLEなる！
 func main() {
-	var N int
-	fmt.Scanln("%d\n", &N)
+	// 空白区切りならこれつける: sc.Split(bufio.ScanWords)
 
-	//N := intSplit()
-	//fmt.Println(N[0])
+	N := intSplit()
+	var ans uint64
+	for _, A := range N {
+		ans += uint64(math.Pow(2, float64(A)))
+	}
+	fmt.Println(ans)
 }
+*/

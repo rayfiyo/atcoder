@@ -13,6 +13,10 @@ var format string
 fmt.Fscan(in, &N)
 fmt.Fprintln(out, N, format)
 
+= 検討要素2
+空白区切りならこれでいける？: sc.Split(bufio.ScanWords)
+→ 多分無理だし、汎用性が低い
+
 = 未検証1
 func printInts(s []int) {
 	p := []string{}

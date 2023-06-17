@@ -40,8 +40,11 @@ func intSC() int {
 }
 
 // int型スライス 1行入力 指定区切り
-func intSplit() []int {
-	slice := []int{}
+func intSplit(N int) []int {
+	data := make(map[int]int)
+	for i := 0; i < N; i++ {
+		data[i] = 0
+	}
 	sc.Scan()
 
 	// 区切り文字を指定する
@@ -51,21 +54,27 @@ func intSplit() []int {
 	// 1文字ずつで区切る
 	//text := strings.SplitN(sc.Text(), "", len(sc.Text()))
 
+	ans := []int{}
 	for _, t := range text {
-		inted, err := strconv.Atoi(t)
+		num, err := strconv.Atoi(t)
 		if err != nil {
 			panic(err)
 		}
-		slice = append(slice, inted)
+		data[num]++
+		if data[num] == 2 {
+			ans = append(ans, num)
+		}
 	}
-	return slice
+	return ans
 }
 
 // 対話形式の問い は TLEなる！
 func main() {
 	var N int
-	fmt.Scanln("%d\n", &N)
+	fmt.Scanf("%d\n", &N)
+	A := intSplit(N)
 
-	//N := intSplit()
-	//fmt.Println(N[0])
+	for i, _ := range A {
+		fmt.Printf("%d ",A[i])
+	}
 }
