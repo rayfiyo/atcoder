@@ -9,14 +9,13 @@ import (
 	"strings"
 )
 
-func memo() {
-	number := 123.4
-	// 四捨五入
-	fmt.Println(math.Round(number))
-	// 切り上げ
-	fmt.Println(math.Ceil(number))
-	// 切り捨て
-	fmt.Println(math.Floor(number))
+// 対話形式の問い は TLEなる！
+func main() {
+	N := 1000
+	fmt.Scanln(&N)
+
+	//N := intSplit()
+	//fmt.Println(N[0])
 }
 
 // 入力最大値: 65536
@@ -51,8 +50,8 @@ func intSplit() []int {
 	// 1文字ずつで区切る
 	//text := strings.SplitN(sc.Text(), "", len(sc.Text()))
 
-	for _, t := range text {
-		inted, err := strconv.Atoi(t)
+	for _, tValue := range text {
+		inted, err := strconv.Atoi(tValue)
 		if err != nil {
 			panic(err)
 		}
@@ -61,11 +60,14 @@ func intSplit() []int {
 	return slice
 }
 
-// 対話形式の問い は TLEなる！
-func main() {
-	var N int
-	fmt.Scanln("%d\n", &N)
+// - * - * - * - * - * -
 
-	//N := intSplit()
-	//fmt.Println(N[0])
+func memo() {
+	number := 123.4
+	// 四捨五入
+	fmt.Println(math.Round(number))
+	// 切り上げ
+	fmt.Println(math.Ceil(number))
+	// 切り捨て
+	fmt.Println(math.Floor(number))
 }
