@@ -1,5 +1,3 @@
-// 問題の読み間違いしているのでゴミ
-/*
 package main
 
 import (
@@ -62,27 +60,28 @@ func intSplit() ([]int, int) {
 		slice = append(slice, inted)
 
 		if i > 0 && stop < 1 {
-			if slice[i-1]+1 == slice[i] {
+			if slice[i-1] == inted-1 {
 				c++
 			} else {
-				stop = 1
+				stop++
 			}
 		}
-
-		if c > 1 {
-			return slice, c + 1
-		}
 	}
-	return slice, 0
+	if c > 1 { // 並んでる
+		return slice, c
+	} else {
+		return slice, 0
+	}
 }
 
 func noSort(P []int) int {
+	if len(P) == 1 {
+		return 1
+	}
 	ans := 0
 	for i, v := range P {
-		if i > 0 {
-			if i+1 == v {
-				ans++
-			}
+		if i+1 > v {
+			ans++
 		}
 	}
 	return ans
@@ -111,7 +110,6 @@ func main() {
 	//	ans[i] = noSort(P[i])
 	//}
 	for i := 0; i < T; i++ {
-		fmt.Println(ans[i] + 1)
+		fmt.Println(ans[i])
 	}
 }
-*/
