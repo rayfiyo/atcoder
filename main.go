@@ -63,6 +63,17 @@ func intSplit() []int {
 // - * - * - * - * - * -
 
 func memo() {
+	// slice
+	// 要素数 = 13, 容量 = 15。容量は省略可能。
+	slice := make([]int, 13, 15)
+	// sliceの (14-1)番目に14 を (15-1)番目に15 を追加。lenは15になる。
+	slice = append(slice, 14, 15)
+	// 要素は初期値がついてる、容量はnil(？)でスライスの最大長。過剰にメモリ確保防ぐ。
+	// 容量超えたら、容量*2 の容量が更に確保される
+	fmt.Println(slice)
+
+	//---
+
 	number := 123.4
 	// 四捨五入
 	fmt.Println(math.Round(number))
