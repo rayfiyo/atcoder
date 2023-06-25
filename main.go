@@ -7,6 +7,8 @@ import (
 	"os"
 	"strconv"
 	"strings"
+	"math/rand"
+	"time"
 )
 
 // 対話形式の問い は TLEなる！
@@ -72,7 +74,7 @@ func memo() {
 	// 容量超えたら、容量*2 の容量が更に確保される
 	fmt.Println(slice)
 
-	//---
+	// - - - //
 
 	number := 123.4
 	// 四捨五入
@@ -81,4 +83,13 @@ func memo() {
 	fmt.Println(math.Ceil(number))
 	// 切り捨て
 	fmt.Println(math.Floor(number))
+
+	// - - - //
+
+	// 0から29までのランダムな整数を2つ作成
+	rand.Seed(time.Now().UnixNano())
+	ranNum1 := rand.Intn(30)
+	ranNum2 := rand.Intn(30)
+	fmt.Println(ranNum1)
+	fmt.Println(ranNum2)
 }
