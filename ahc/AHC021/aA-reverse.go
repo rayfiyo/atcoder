@@ -19,15 +19,15 @@ func main() {
 	klog := make([]string, 0, 10000)
 	for i := 0; i < 100000; i++ {
 
-		for bx := 0; bx < 30; bx++ {
+		for bx := 0; bx < 29; bx++ {
 			for by := 0; by < bx+1; by++ {
 				if by < bx+1 { // 制約
-					rank, hx, hy := 0, 0, 0
-					nx := bx - 1                        // newX 比較(入れ替え)対象、基準の一つ上の段
-					for ny := by - 1; ny < by+1; ny++ { // newY 比較(入れ替え)対象
-						if nx > -1 && nx < 30 && nx != bx { //制約
-							if ny > -1 && ny < 30 && ny < nx+1 { // 制約
-								if rank < b[nx][ny] {
+					rank, hx, hy := 464, 0, 0
+					nx := bx + 1                    // newX 比較(入れ替え)対象、基準の一つ下の段
+					for ny := by; ny < by+2; ny++ { // newY 比較(入れ替え)対象
+						if nx < 30 && nx != bx { //制約
+							if ny > -1 && ny < 30 { // 制約
+								if rank > b[nx][ny] {
 									rank = b[nx][ny]
 									hx = nx
 									hy = ny
@@ -36,18 +36,20 @@ func main() {
 						}
 					}
 
-					if b[bx][by] < b[hx][hy] { // 上に一番でかいやつあるとき
+					if b[bx][by] > b[hx][hy] { // 下に一番小さいやつあるとき
 						b[bx][by], b[hx][hy] = b[hx][hy], b[bx][by]
 						K++
 						text := fmt.Sprintf("%d %d %d %d", bx, by, hx, hy)
 						klog = append(klog, text)
+						if K > 10000-10 { // 保険
+							i = 100000
+							by = bx + 1
+							break
+						}
 					}
+
 				}
 			}
-		}
-
-		if K > 10000-1 { // 保険
-			break
 		}
 
 	}
