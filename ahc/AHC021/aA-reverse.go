@@ -10,53 +10,87 @@ import (
 
 // 対話形式の問い は TLEなる！
 func main() {
+	// 入力
 	b := make([][]int, 30)
 	for i := 0; i < 30; i++ {
 		b[i] = intSplit()
 	}
 
-	K := 0
-	klog := make([]string, 0, 10000)
-	for i := 0; i < 100000; i++ {
-
-		for bx := 0; bx < 29; bx++ {
-			for by := 0; by < bx+1; by++ {
-				if by < bx+1 { // 制約
-					rank, hx, hy := 464, 0, 0
-					nx := bx + 1                    // newX 比較(入れ替え)対象、基準の一つ下の段
-					for ny := by; ny < by+2; ny++ { // newY 比較(入れ替え)対象
-						if nx < 30 && nx != bx { //制約
-							if ny > -1 && ny < 30 { // 制約
-								if rank > b[nx][ny] {
-									rank = b[nx][ny]
-									hx = nx
-									hy = ny
-								}
-							}
-						}
-					}
-
-					if b[bx][by] > b[hx][hy] { // 下に一番小さいやつあるとき
-						b[bx][by], b[hx][hy] = b[hx][hy], b[bx][by]
-						K++
-						text := fmt.Sprintf("%d %d %d %d", bx, by, hx, hy)
-						klog = append(klog, text)
-						if K > 10000-10 { // 保険
-							i = 100000
-							by = bx + 1
-							break
-						}
-					}
-
+	// 下から比較(実装可能) ∧ 上から揃う(最良)
+	bTop := make([][]int, 30)
+	for i := range b {
+		for j := range b[i] {
+			bTop[i] = append(bTop[i], b[i][j])
+		}
+	}
+	kTop := 0
+	kTopLog := make([]string, 0, 10000)
+	for i := 0; i < 50000; i++ {
+		for bx := 28; bx > -1; bx-- { // bx と bx+1(下) の比較なので 0~28
+			for by := 0; by < bx+1; by++ { // by と by+1(右) の比較なので 0~bx
+				nx := bx + 1 // newX 比較対象: 上の段
+				ny := by     // newY 比較対象: 左(基準)
+				// nx と ny は定義上、制約内
+				if bTop[nx][ny] > bTop[nx][ny+1] { // 右(ny+1)の方が小さいとき
+					ny++
+				}
+				if bTop[bx][by] > bTop[nx][ny] { // 下に一番小さいやつあるとき
+					bTop[bx][by], bTop[nx][ny] = bTop[nx][ny], bTop[bx][by]
+					text := fmt.Sprintf("%d %d %d %d", bx, by, nx, ny)
+					kTopLog = append(kTopLog, text)
+					kTop++
 				}
 			}
 		}
+	}
 
+	/*
+		// 上から比較∧下から揃う
+		bLow := make([][]int, 30)
+		for i := range b {
+			for j := range b[i] {
+				bLow[i] = append(bLow[i], b[i][j])
+			}
+		}
+		kLow := 0
+		kLowLog := make([]string, 0, 10000)
+		for i := 0; i < 50000; i++ {
+			for bx := 1; bx < 30; bx++ { // bx と bx-1(上) の比較なので 1~29
+				for by := 1; by < bx+1; by++ { // by-1(左) と by の比較なので 1~bx-1
+					nx := bx - 1                       // newX 比較対象: 上の段
+					ny := by - 1                       // newY 比較対象: 左(基準)
+					if bLow[nx][ny] < bLow[nx][ny+1] { // 右(ny+1)の方が大きいとき
+						ny++
+					}
+					if bLow[bx][by] < bLow[nx][ny] { // 上に一番大きいやつあるとき
+						bLow[bx][by], bLow[nx][ny] = bLow[nx][ny], bLow[bx][by]
+						text := fmt.Sprintf("%d %d %d %d", bx, by, nx, ny)
+						kLowLog = append(kLowLog, text)
+						kLow++
+					}
+				}
+			}
+		}
+	*/
+
+	fmt.Println(kTop)
+	for i := range kTopLog {
+		fmt.Println(kTopLog[i])
 	}
-	fmt.Println(K)
-	for i := range klog {
-		fmt.Println(klog[i])
-	}
+	/*
+		// 出力
+		if kTop < kLow {
+			fmt.Println(kTop)
+			for i := range kTopLog {
+				fmt.Println(kTopLog[i])
+			}
+		} else {
+			fmt.Println(kLow)
+			for i := range kLowLog {
+				fmt.Println(kLowLog[i])
+			}
+		}
+	*/
 }
 
 // 入力最大値: 65536
