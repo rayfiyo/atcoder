@@ -1,30 +1,50 @@
+/*
 package main
 
 import (
 	"bufio"
 	"fmt"
 	"math"
+	"math/rand"
 	"os"
 	"strconv"
 	"strings"
-	"math/rand"
 	"time"
 )
 
 // 対話形式の問い は TLEなる！
 func main() {
-	N := 1000
-	fmt.Scanln(&N)
+	S := intSplit()
 
-	//N := intSplit()
-	//fmt.Println(N[0])
+	err := 0
+	for i := 0; i < 8; i++ {
+		if i < 7 {
+			if S[i] > S[i+1] {
+				err++
+				break
+			}
+		}
+		if S[i] < 100 || S[i] > 675 {
+			err++
+			break
+		}
+		if S[i]%25 != 0 {
+			err++
+			break
+		}
+	}
+	if err == 0 {
+		fmt.Println("Yes")
+	} else {
+		fmt.Println("No")
+	}
 }
 
 // 入力最大値: 65536
 var sc = bufio.NewScanner(os.Stdin) // 高級、行区切り、トークン分割可能
 //var sr= bufio.NewReader(os.Stdin)	// 低レイヤ、区切り指定、バイナリ入力可能
 
-// string型(スライス？) 1行入力
+// strings型(スライス？) 1行入力
 func stringLine() string {
 	sc.Scan()
 	return sc.Text()
@@ -93,3 +113,4 @@ func memo() {
 	fmt.Println(ranNum1)
 	fmt.Println(ranNum2)
 }
+*/

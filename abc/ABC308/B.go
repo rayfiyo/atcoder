@@ -4,20 +4,33 @@ import (
 	"bufio"
 	"fmt"
 	"math"
+	"math/rand"
 	"os"
 	"strconv"
 	"strings"
-	"math/rand"
 	"time"
 )
 
 // 対話形式の問い は TLEなる！
 func main() {
-	N := 1000
-	fmt.Scanln(&N)
+	N, M := 100, 100
+	fmt.Scanf("%d %d\n", &N, &M)
+	C := stringLine()
+	D := stringLine()
+	P := intSplit()
 
-	//N := intSplit()
-	//fmt.Println(N[0])
+	ans := 0
+	for _, c := range C {
+		for i := 0; i < M; i++ {
+			if c == D[i] {
+				ans += P[i+1]
+				break
+			} else if i+1 == M {
+				ans += P[0]
+			}
+		}
+	}
+	fmt.Println(ans)
 }
 
 // 入力最大値: 65536
@@ -25,9 +38,14 @@ var sc = bufio.NewScanner(os.Stdin) // 高級、行区切り、トークン分�
 //var sr= bufio.NewReader(os.Stdin)	// 低レイヤ、区切り指定、バイナリ入力可能
 
 // string型(スライス？) 1行入力
-func stringLine() string {
+func stringLine() []string {
+	slice := []string{}
 	sc.Scan()
-	return sc.Text()
+	text := strings.Split(sc.Text(), " ")
+	for _, tValue := range text {
+		slice = append(slice, tValue)
+	}
+	return slice
 }
 
 // int型 1行入力
