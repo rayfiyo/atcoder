@@ -4,10 +4,11 @@ import (
 	"bufio"
 	"fmt"
 	"math"
+	"math/rand"
 	"os"
+	"sort"
 	"strconv"
 	"strings"
-	"math/rand"
 	"time"
 )
 
@@ -24,10 +25,20 @@ func main() {
 var sc = bufio.NewScanner(os.Stdin) // 高級、行区切り、トークン分割可能
 //var sr= bufio.NewReader(os.Stdin)	// 低レイヤ、区切り指定、バイナリ入力可能
 
-// string型(スライス？) 1行入力
-func stringLine() string {
+// string型スライス 1行入力 指定区切り
+func stringLine() []string {
+	slice := []string{}
 	sc.Scan()
-	return sc.Text()
+
+	// (sc.Text(), "ここで区切り文字指定だよ～")
+	text := strings.Split(sc.Text(), " ")
+	// 1文字ずつで区切る
+	//text := strings.SplitN(sc.Text(), "", len(sc.Text()))
+
+	for _, tValue := range text {
+		slice = append(slice, tValue)
+	}
+	return slice
 }
 
 // int型 1行入力
@@ -45,10 +56,8 @@ func intSplit() []int {
 	slice := []int{}
 	sc.Scan()
 
-	// 区切り文字を指定する
 	// (sc.Text(), "ここで区切り文字指定だよ～")
 	text := strings.Split(sc.Text(), " ")
-
 	// 1文字ずつで区切る
 	//text := strings.SplitN(sc.Text(), "", len(sc.Text()))
 
@@ -73,6 +82,16 @@ func memo() {
 	// 要素は初期値がついてる、容量はnil(？)でスライスの最大長。過剰にメモリ確保防ぐ。
 	// 容量超えたら、容量*2 の容量が更に確保される
 	fmt.Println(slice)
+
+	// - - - //
+	// 文字列配列を辞書順に並び替え
+	str := []string{"banana", "apple", "cherry"}
+	sort.Strings(str)
+	fmt.Println(str)
+	// 配列を昇順に並び替え
+	int := []int{5, 2, 9, 1, 7}
+	sort.Ints(int)
+	fmt.Println(int)
 
 	// - - - //
 
