@@ -14,11 +14,30 @@ import (
 
 // 対話形式の問い は TLEなる！
 func main() {
-	N := 1000
-	fmt.Scanln(&N)
+	T := 100000
+	fmt.Scanln(&T)
 
-	for i:=0; i<N; i++{
+	N := make([]int, T)
+	K := make([]int, T)
+	for i := 0; i < T; i++ {
+		fmt.Scanf("%d %d\n", &N[i], &K[i])
+		fmt.Println(checker(N[i], K[i]))
 	}
+}
+
+func checker(N, K int) string {
+	n := 0
+	for ; ; n++ {
+		power1 := int(math.Pow(3, float64(n)))
+		power2 := int(math.Pow(3, float64(n+1)))
+
+		if power1 == num && power2 == num {
+			return "Yes"
+		} else if power1 > num {
+			return "No"
+		}
+	}
+
 }
 
 // 入力最大値: 65536
