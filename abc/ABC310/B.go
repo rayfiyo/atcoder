@@ -23,8 +23,8 @@ func main() {
 		pro[i] = intSplit()
 	}
 
-	sort.Slice(A, func(i, j int) bool {
-		return A[i][0] < A[j][0]
+	sort.Slice(pro, func(i, j int) bool {
+		return pro[i][0] < pro[j][0]
 	})
 }
 
@@ -96,9 +96,9 @@ func memo() {
 	sort.Strings(str)
 	fmt.Println(str)
 	// 配列を昇順に並び替え
-	int := []int{5, 2, 9, 1, 7}
-	sort.Ints(int)
-	fmt.Println(int)
+	num := []int{5, 2, 9, 1, 7}
+	sort.Ints(num)
+	fmt.Println(num)
 
 	// - - - //
 
