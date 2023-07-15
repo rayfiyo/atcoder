@@ -17,7 +17,7 @@ func main() {
 	N := 1000
 	fmt.Scanln(&N)
 
-	for i:=0; i<N; i++{
+	for i := 0; i < N; i++ {
 	}
 }
 
@@ -26,7 +26,7 @@ var sc = bufio.NewScanner(os.Stdin) // 高級、行区切り、トークン分�
 //var sr= bufio.NewReader(os.Stdin)	// 低レイヤ、区切り指定、バイナリ入力可能
 
 // string型スライス 1行入力 指定区切り
-func stringLine() []string {
+func scstr() []string {
 	slice := []string{}
 	sc.Scan()
 
@@ -41,18 +41,8 @@ func stringLine() []string {
 	return slice
 }
 
-// int型 1行入力
-func intSC() int {
-	sc.Scan()
-	inputInt, err := strconv.Atoi(sc.Text())
-	if err != nil {
-		panic(err)
-	}
-	return inputInt
-}
-
 // int型スライス 1行入力 指定区切り
-func intSplit() []int {
+func scint() []int {
 	slice := []int{}
 	sc.Scan()
 
@@ -71,17 +61,25 @@ func intSplit() []int {
 	return slice
 }
 
+// int型 1行入力
+func sclineint() int {
+	sc.Scan()
+	inputInt, err := strconv.Atoi(sc.Text())
+	if err != nil {
+		panic(err)
+	}
+	return inputInt
+}
+
 // - * - * - * - * - * -
 
 func memo() {
-	// slice
-	// 要素数 = 13, 容量 = 15。容量は省略可能。
-	slice := make([]int, 13, 15)
-	// sliceの (14-1)番目に14 を (15-1)番目に15 を追加。lenは15になる。
-	slice = append(slice, 14, 15)
-	// 要素は初期値がついてる、容量はnil(？)でスライスの最大長。過剰にメモリ確保防ぐ。
-	// 容量超えたら、容量*2 の容量が更に確保される
-	fmt.Println(slice)
+	// 二次元配列A を A[ソート][固定] でソート
+	A := [][]int{{4, 6}, {2, 4}, {5, 1}}
+	sort.Slice(A, func(i, j int) bool {
+		return A[i][0] < A[j][0]
+	})
+	fmt.Println(A)
 
 	// - - - //
 	// 文字列配列を辞書順に並び替え
@@ -89,9 +87,9 @@ func memo() {
 	sort.Strings(str)
 	fmt.Println(str)
 	// 配列を昇順に並び替え
-	int := []int{5, 2, 9, 1, 7}
-	sort.Ints(int)
-	fmt.Println(int)
+	num := []int{5, 2, 9, 1, 7}
+	sort.Ints(num)
+	fmt.Println(num)
 
 	// - - - //
 
@@ -111,4 +109,14 @@ func memo() {
 	ranNum2 := rand.Intn(30)
 	fmt.Println(ranNum1)
 	fmt.Println(ranNum2)
+
+	// - - - //
+	// slice
+	// 要素数 = 13, 容量 = 15。容量は省略可能。
+	slice := make([]int, 13, 15)
+	// sliceの (14-1)番目に14 を (15-1)番目に15 を追加。lenは15になる。
+	slice = append(slice, 14, 15)
+	// 要素は初期値がついてる、容量はnil(？)でスライスの最大長。過剰にメモリ確保防ぐ。
+	// 容量超えたら、容量*2 の容量が更に確保される
+	fmt.Println(slice)
 }
