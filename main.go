@@ -26,7 +26,7 @@ var sc = bufio.NewScanner(os.Stdin) // 高級、行区切り、トークン分�
 //var sr= bufio.NewReader(os.Stdin)	// 低レイヤ、区切り指定、バイナリ入力可能
 
 // string型スライス 1行入力 指定区切り
-func scstr() []string {
+func scstring() []string {
 	slice := []string{}
 	sc.Scan()
 
