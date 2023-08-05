@@ -25,7 +25,7 @@ func main() {
 var sc = bufio.NewScanner(os.Stdin) // 高級、行区切り、トークン分割可能
 //var sr= bufio.NewReader(os.Stdin)	// 低レイヤ、区切り指定、バイナリ入力可能
 
-// string型スライス 1行入力 指定区切り
+// string 区切り1行
 func scstring() []string {
 	slice := []string{}
 	sc.Scan()
@@ -41,7 +41,7 @@ func scstring() []string {
 	return slice
 }
 
-// int型スライス 1行入力 指定区切り
+// int    区切り1行
 func scint() []int {
 	slice := []int{}
 	sc.Scan()
@@ -61,7 +61,7 @@ func scint() []int {
 	return slice
 }
 
-// int型 1行入力
+// int 1行 そのまま入力
 func sclineint() int {
 	sc.Scan()
 	inputInt, err := strconv.Atoi(sc.Text())
@@ -82,6 +82,7 @@ func memo() {
 	fmt.Println(A)
 
 	// - - - //
+	
 	// 文字列配列を辞書順に並び替え
 	str := []string{"banana", "apple", "cherry"}
 	sort.Strings(str)
@@ -92,6 +93,14 @@ func memo() {
 	fmt.Println(num)
 
 	// - - - //
+
+	// Goのmap(連想配列)
+	myMap := make(map[string]int)
+	myMap["apple"] = 1
+	myMap["banana"] = 2
+	fmt.Println(myMap["apple"]) // 1 を出力
+
+	// - - - 
 
 	number := 123.4
 	// 四捨五入
