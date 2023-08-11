@@ -1,4 +1,3 @@
-/*
 package main
 
 import (
@@ -145,4 +144,3 @@ func memo() {
 	// 容量超えたら、容量*2 の容量が更に確保される
 	fmt.Println(slice)
 }
-*/
