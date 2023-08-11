@@ -12,7 +12,6 @@ import (
 	"time"
 )
 
-// 対話形式の問い は TLEなる！
 func main() {
 	N := 1000
 	fmt.Scanln(&N)
@@ -21,6 +20,7 @@ func main() {
 	}
 }
 
+// バッファ使う 対話形式 フラッシュ忘れない
 // 入力最大値: 65536
 var sc = bufio.NewScanner(os.Stdin) // 高級、行区切り、トークン分割可能
 //var sr= bufio.NewReader(os.Stdin)	// 低レイヤ、区切り指定、バイナリ入力可能
