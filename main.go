@@ -19,12 +19,12 @@ func main() {
 	for i := 0; i < N; i++ {
 	}
 }
-// バッファ使う 対話形式 フラッシュ忘れない
+
 // 入力最大値: 65536
 var sc = bufio.NewScanner(os.Stdin) // 高級、行区切り、トークン分割可能
 //var sr= bufio.NewReader(os.Stdin)	// 低レイヤ、区切り指定、バイナリ入力可能
 
-// string 区切り1行
+// string 1行取得 任意区切り
 func scstring() []string {
 	slice := []string{}
 	sc.Scan()
@@ -40,7 +40,7 @@ func scstring() []string {
 	return slice
 }
 
-// int    区切り1行
+// int    1行取得 任意区切り
 func scint() []int {
 	slice := []int{}
 	sc.Scan()
@@ -60,7 +60,26 @@ func scint() []int {
 	return slice
 }
 
-// int 1行 そのまま入力
+// mapの値に基づき並び替えたとき の キーの配列
+func sortmap(N map[int]int) []int {
+	keys := make([]int, 0, len(N))
+	for vofN := range N {
+		keys = append(keys, vofN)
+	}
+	sort.Slice(keys, func(i, j int) bool {
+		if N[keys[i]] != N[keys[j]] {
+			return N[keys[i]] < N[keys[j]] // 値の昇順↑に基づく
+			// return N[keys[i]] > N[keys[j]] // 値の降順↓に基づく
+		} else {
+			return keys[i] < keys[j] // 同値のときキーの昇順↑に基づく
+			// return keys[i] > keys[j] // 同値のときキーの降順↓に基づく
+		}
+	})
+	return keys
+}
+
+// int 1行取得 そのまま入力 ？？？
+// 使わない６溜まったら消す: ABC323,
 func sclineint() int {
 	sc.Scan()
 	inputInt, err := strconv.Atoi(sc.Text())
@@ -81,7 +100,7 @@ func memo() {
 	fmt.Println(A)
 
 	// - - - //
-	
+
 	// 文字列配列を辞書順に並び替え
 	str := []string{"banana", "apple", "cherry"}
 	sort.Strings(str)
@@ -99,7 +118,7 @@ func memo() {
 	myMap["banana"] = 2
 	fmt.Println(myMap["apple"]) // 1 を出力
 
-	// - - - 
+	// - - - //
 
 	number := 123.4
 	// 四捨五入
@@ -119,12 +138,36 @@ func memo() {
 	fmt.Println(ranNum2)
 
 	// - - - //
-	// slice
+
+	// スライス
 	// 要素数 = 13, 容量 = 15。容量は省略可能。
 	slice := make([]int, 13, 15)
-	// sliceの (14-1)番目に14 を (15-1)番目に15 を追加。lenは15になる。
+	// スライスの (14-1)番目に14 を (15-1)番目に15 を追加。lenは15になる。
 	slice = append(slice, 14, 15)
 	// 要素は初期値がついてる、容量はnil(？)でスライスの最大長。過剰にメモリ確保防ぐ。
 	// 容量超えたら、容量*2 の容量が更に確保される
 	fmt.Println(slice)
+
+	// - - - //
+
+	// mapの値を降順↓に並び替え，キーを出力
+	// mapのキーを配列にすることができればmapの比較ができるので，それが真のときにキーを並び替えれば良い
+	// 3 2 1 4 (2 1 0 3 に 1加えたもの) の出力を期待
+	N := map[int]int{0: 3, 1: 3, 2: 7, 3: 1}
+	// mapのキーをkeysスライスに複製
+	keys := make([]int, 0, len(N))
+	for vofN := range N { // Nのキーを一時的にもつvofN
+		keys = append(keys, vofN)
+	}
+	// keysをNの式が真のときに並び替える
+	sort.Slice(keys, func(i, j int) bool { // Nに基づき並び替え
+		if N[keys[i]] != N[keys[j]] {
+			return N[keys[i]] > N[keys[j]] // 値の降順に基づく
+		} else {
+			return keys[i] < keys[j] // 同値のときキーの昇順に基づく
+		}
+	})
+	for _, v := range keys { // 出力
+		fmt.Println(v + 1)
+	}
 }
