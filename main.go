@@ -1,3 +1,4 @@
+// /*
 package main
 
 import (
@@ -131,7 +132,7 @@ func memo() {
 	// - - - //
 
 	// 0から29までのランダムな整数を2つ作成
-	rand.Seed(time.Now().UnixNano())
+	rand.NewSource(time.Now().UnixNano())
 	ranNum1 := rand.Intn(30)
 	ranNum2 := rand.Intn(30)
 	fmt.Println(ranNum1)
@@ -171,3 +172,5 @@ func memo() {
 		fmt.Println(v + 1)
 	}
 }
+
+//*/
