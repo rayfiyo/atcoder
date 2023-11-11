@@ -1,1 +1,0 @@
-/home/ray/go/src/github.com/rayfiyo/myAtCoder/ahc/AHC022/tools/target/release/gen: /home/ray/go/src/github.com/rayfiyo/myAtCoder/ahc/AHC022/tools/src/bin/gen.rs /home/ray/go/src/github.com/rayfiyo/myAtCoder/ahc/AHC022/tools/src/lib.rs
