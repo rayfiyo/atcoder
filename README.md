@@ -1,8 +1,10 @@
-# myAtCoder
-AtCoder関係のレポジトリ。
+# (my)atcoder
+このレポジトリはAtCoderに関する個人的なものです。
+This repository is personal regarding AtCoder.
 
 ---
 
+# nemo for me
 > [!NOTE]
 > 以下は古いREADME.mdの記述内容を残しているだけであり，現在サポートされていない．
 # old
